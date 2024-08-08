@@ -3,6 +3,7 @@ import './App.css';
 import './assets/css/Custom.css';
 // Pages
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 
 // Routing
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Dashboard/>} />
         <Route path='/login' element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
       </Routes>
     </BrowserRouter>
   );
