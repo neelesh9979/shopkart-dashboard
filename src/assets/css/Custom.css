@@ -4,3 +4,7 @@ html body {
 form .form-control:focus {
    box-shadow: none;
 }
+
+.step-img {
+   width: 500px;
+}

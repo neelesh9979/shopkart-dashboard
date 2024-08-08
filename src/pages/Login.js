@@ -140,6 +140,9 @@ const Login = () =>{
                             <div className="login-detail p-5 rounded-3 text-center bg-primary h-100">
                                 <h3 className="pb-2 text-white fs-1">Welcome back! Please sign in to your ShopKart account</h3>
                                 <p className="text-white">Lorem ipsum dolor sit amet consectetur. Faccilisi neque lects turpis id tincidunt eget. Sagittis id et cursus porttitor.</p>
+                                <div className="text-center p-2">
+                                    <img src="./images/stepImg.png" className="step-img" />
+                                </div>
                             </div>
                         </div>
                     </div>
