@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-
+import { Navigate } from 'react-router-dom';
 const Login = () =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,13 +31,20 @@ const Login = () =>{
                 const data = await response.json();
                 if(data.status === true){
                     setLoginStatus(()=> userLoginStatus(data.status,data.message));
+                    sessionStorage.setItem('userTokenId', data.token);
+                    sessionStorage.setItem('userLoggedIn', true);
+                    <Navigate to="/" />
                     setLoading(false);
                 }else{
                     setLoginStatus(()=> userLoginStatus(data.status,data.message));
+                    sessionStorage.setItem('userTokenId', null);
+                    sessionStorage.setItem('userLoggedIn', false);
                     setLoading(false)
                 }
             } catch (error) {
                 // Handle error
+                sessionStorage.setItem('userTokenId', null);
+                sessionStorage.setItem('userLoggedIn', false);
                 setLoading(false);
             }
         }
