@@ -33,7 +33,7 @@ const Login = () =>{
                     setLoginStatus(()=> userLoginStatus(data.status,data.message));
                     sessionStorage.setItem('userTokenId', data.token);
                     sessionStorage.setItem('userLoggedIn', true);
-                    <Navigate to="/" />
+                    
                     setLoading(false);
                 }else{
                     setLoginStatus(()=> userLoginStatus(data.status,data.message));

@@ -22,9 +22,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/" element={isLoggedIn === 'true' ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} /> */}
-        <Route path="/" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={!isLoggedIn ? <Login /> : <Navigate to="/" />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={!isLoggedIn ? <Register /> : <Navigate to="/" />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

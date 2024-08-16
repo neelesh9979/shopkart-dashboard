@@ -6,12 +6,14 @@ const Register = () =>{
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [loginStatus, setLoginStatus] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState("");
 
     // Vendor State
     const [shopName, setShopName] = useState('');
@@ -130,12 +132,12 @@ const Register = () =>{
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-group">
-                                        <label className="mb-1 text-secondary fs-6" htmlFor="exampleInputEmail1">Email or Phone number</label>
+                                    <div className="form-group mb-2">
+                                        <label className="mb-1 text-secondary fs-6" htmlFor="exampleInputEmail1">Email</label>
                                         <input 
                                             type="text" 
-                                            className={emailError ? 'is-invalid form-control ' : 'form-control'} 
-                                            name="emailorphone" 
+                                            className='form-control' 
+                                            name="email" 
                                             value={email}
                                             onChange={(e) =>{
                                                 setEmail(e.target.value)
@@ -143,7 +145,31 @@ const Register = () =>{
                                             } }
                                             onKeyDown={handleKeyDown}
                                         />
-                                        <div className="invalid-feedback">Please enter registered email or phone number.</div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="mb-1 text-secondary fs-6" htmlFor="exampleInputEmail1">Phone Number</label>
+                                        <input 
+                                            type="text" 
+                                            className={error === ""?'form-control':'is-invalid form-control'} 
+                                            name="phone" 
+                                            value={phone}
+                                            onChange={(e) =>{
+                                                
+                                                {phone !=='' ? setEmailError(false) : setEmailError(true)}
+                                                if (e.target.value ==="" || /^[0-9\b]+$/.test(e.target.value)) {
+                                                    if(e.target.value.length <= 10){
+                                                        setPhone(e.target.value);
+                                                        setError('');
+                                                    }else{
+                                                        setPhone(e.target.value);
+                                                        setError("Mobile number cannot be more than 10 digits");
+                                                    }
+                                                    
+                                                }
+                                            } }
+                                            onKeyDown={handleKeyDown}
+                                        />
+                                        <div className="invalid-feedback">{error}</div>
                                     </div>
                                     <div className="form-group has-validation my-3 pb-1">
                                         <label className="mb-1 text-secondary fs-6" htmlFor="exampleInputPassword1">Password</label>
@@ -192,6 +218,76 @@ const Register = () =>{
                                                 <input class="form-control form-control-sm" id="formFileSm" type="file" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className="row mb-2">
+                                        <div class="col-md-6">
+                                            <div className="form-group">
+                                                <label class="mb-1 text-secondary fs-6">Your Shop Type</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Select your shop type</option>
+                                                    <option value="Fashion">Fashion</option>
+                                                    <option value="Jewelry">Jewelry</option>
+                                                    <option value="Footwear">Footwear</option>
+                                                    <option value="Books">Books</option>
+                                                    <option value="Cosmetics">Cosmetics</option>
+                                                    <option value="Electronics">Electronics</option>
+                                                    <option value="Toys & Games">Toys & Games</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div className="form-group">
+                                                <label class="mb-1 text-secondary fs-6">Add your document</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Select your document type</option>
+                                                    <option value="PAN">PAN</option>
+                                                    <option value="Adhar Card">Adhar Card</option>
+                                                    <option value="GSTIN">GSTIN Number</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group mb-2">
+                                        <label className="mb-1 text-secondary fs-6">Shop Address</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div className="row mb-2 mt-2">
+                                        <div class="col-md-4">
+                                            <div className="form-group">
+                                                <label class="mb-1 text-secondary fs-6">State</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>State</option>
+                                                    <option value="Fashion">Fashion</option>
+                                                    <option value="Jewelry">Jewelry</option>
+                                                    <option value="Footwear">Footwear</option>
+                                                    <option value="Books">Books</option>
+                                                    <option value="Cosmetics">Cosmetics</option>
+                                                    <option value="Electronics">Electronics</option>
+                                                    <option value="Toys & Games">Toys & Games</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div className="form-group">
+                                                <label class="mb-1 text-secondary fs-6">City</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>City</option>
+                                                    <option value="PAN">PAN</option>
+                                                    <option value="Adhar Card">Adhar Card</option>
+                                                    <option value="GSTIN">GSTIN Number</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div className="form-group">
+                                                <label class="mb-1 text-secondary fs-6">Zip Code(Postal Code)</label>
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group mb-2">
+                                        <label className="mb-1 text-secondary fs-6">Shop Landmark</label>
+                                        <input type="text" class="form-control" />
                                     </div>
                                     {loginStatus !== ''? loginStatus : ''}
                                     <button type="submit" className="btn btn-primary w-100">
